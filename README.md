@@ -53,9 +53,3 @@ Simulates:
 
 ---
 
-## 🛠 How to Use
-
-1. Install **MySQL Server** or use any MySQL-compatible environment (XAMPP, WAMP, phpMyAdmin, MySQL Workbench).
-2. Clone the repository:
-   ```bash
-   git clone https://github.com/<your-username>/<your-repo-name>.git
