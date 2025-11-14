@@ -1,0 +1,11 @@
+USE company_db;
+
+-- DELETE SINGLE RECORD
+DELETE FROM employees
+WHERE emp_name = 'Sneha Kulkarni';
+
+-- DELETE ALL RECORDS (SAFE MODE OFF REQUIRED)
+DELETE FROM employees;
+
+-- DROP TABLE (IF NEEDED)
+DROP TABLE IF EXISTS employees;
