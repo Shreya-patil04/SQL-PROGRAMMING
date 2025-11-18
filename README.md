@@ -3,24 +3,6 @@ SQL-PROGRAMMING
 
 This repository contains a structured collection of MySQL scripts designed for beginners and intermediate learners to practice SQL fundamentals and implement small real-world projects. The content is divided into **Basic Operations** and **Mini Projects**, enabling users to build a strong command over database concepts.
 
----
- Repository Structure
-SQL PROGRAMMING/
-│
-├── basic-operations/
-│ ├── 01_create_database.sql
-│ ├── 02_insert_operations.sql
-│ ├── 03_select_queries.sql
-│ ├── 04_update_operations.sql
-│ └── 05_delete_operations.sql
-│
-└── projects/
-├── project_student_management.sql
-└── project_inventory_management.sql
-
-
----
-
 ## 🚀 Features
 
 ### **1. Basic SQL Operations (5 Files)**
