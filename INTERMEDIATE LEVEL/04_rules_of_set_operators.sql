@@ -4,16 +4,15 @@ USE SalesDB
 SELECT 
 FirstName,
 LastName
-FROM Customers
+FROM Sales.Customers
 -- join, where, group by
 UNION
 
 SELECT 
 FirstName,
 LastName
-FROM Employees
+FROM Sales.Employees
 -- join, where, group by
-
 -- order by first name
 
 
@@ -44,6 +43,7 @@ EmployeeID,
 LastName
 FROM Sales.Employees
 
+
 -- RULE 4: ORDER OF COLUMNS
 SELECT
 LastName,
@@ -55,4 +55,34 @@ UNION
 SELECT 
 EmployeeID,
 LastName
+FROM Sales.Employees
+
+
+-- RULE 5: COLUMN ALIASES
+SELECT
+CustomerID as ID,
+-- this is correct
+LastName
+FROM Sales.Customers
+
+UNION
+
+SELECT 
+EmployeeID,
+LastName as LAST_NAME
+--this is wrong
+FROM Sales.Employees
+
+
+-- RULE 6: CORRECT COLUMS
+SELECT
+FirstName,
+LastName
+FROM Sales.Customers
+
+UNION
+
+SELECT 
+LastName,
+FirstName
 FROM Sales.Employees
