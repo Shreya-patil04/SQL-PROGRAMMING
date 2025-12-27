@@ -1,7 +1,5 @@
 USE SalesDB
 
--- UNION / UNION ALL USE CASES:
-
 -- 1. Combine information:
 /* SQL TASK: Orders are stored in seperate tables (orders and orderArchieve)
 combine all order data into onw report without duplicate */
@@ -36,3 +34,7 @@ SELECT
       ,[Sales]
       ,[CreationTime]
 FROM Sales.OrdersArchive;
+
+
+-- 2. Delta Detection: 
+-- SQL TASK: 
