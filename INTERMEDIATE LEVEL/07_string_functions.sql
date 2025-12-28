@@ -83,4 +83,8 @@ RIGHT(first_name,2) AS last_2_name
 FROM customers
 
 --3. substring()
--- SQL TASK: 
+-- SQL TASK: retieve a list of customer's first names after removing the first customer
+SELECT
+first_name,
+SUBSTRING(TRIM(first_name) , 2 ,LEN(first_name )) AS sub_name
+FROM customers
