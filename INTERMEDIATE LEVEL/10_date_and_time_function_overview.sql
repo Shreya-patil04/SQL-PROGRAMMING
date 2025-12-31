@@ -82,9 +82,43 @@ COUNT(*)
 FROM Sales.Orders
 GROUP BY DATETRUNC(year,CreationTime)
 
+-- to set date to the first day of month
+SELECT
+OrderID ,
+CreationTime,
+DATETRUNC(Month, CreationTime) StartOfMonth
+FROM Sales.Orders
+
 --7.EOMONTH()
 SELECT
 OrderID ,
 CreationTime,
 EOMONTH(CreationTime) EndOfMonth
 FROM Sales.Orders
+
+-- USE CASE PART EXTRACTION: DATA AGREGATION
+-- SQL TASK: How many orders were placed each year?
+SELECT 
+YEAR(OrderDate),
+COUNT(*) NrOfOrders
+FROM Sales.Orders
+GROUP BY YEAR(OrderDate)
+-- SQL TASK: How many orders were placed each month?
+SELECT 
+DATENAME(MONTH, OrderDate) AS OrderDate,
+COUNT(*) NrOfOrders
+FROM Sales.Orders
+GROUP BY DATENAME(MONTH, OrderDate)
+
+-- USE CASE PART EXTRACTION: DATA FILTERING
+-- SQL TASK: Shpw all orders that were placed during the month of february
+SELECT
+*
+FROM Sales.Orders
+WHERE MONTH(OrderDate) = 2
+
+
+
+
+
+-- FORMAT AND CASTING FUNCTIONS: -
