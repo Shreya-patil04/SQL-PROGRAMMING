@@ -121,3 +121,39 @@ WHERE MONTH(OrderDate) = 2
 
 -- FORMAT AND CASTING FUNCTIONS: -
 -- 1. FORMAT()
+SELECT
+OrderID ,
+CreationTime,
+FORMAT(CreationTime, 'MM-dd-yyyy' ) USA_standard,
+FORMAT(CreationTime, 'dd--MM-yyyy' ) USA_standard,
+--day
+FORMAT(CreationTime, 'dd' ) dd,
+FORMAT(CreationTime, 'ddd' ) ddd,
+FORMAT(CreationTime, 'dddd' ) dddd,
+--month
+FORMAT(CreationTime, 'MM' ) MM,
+FORMAT(CreationTime, 'MMM' ) MMM,
+FORMAT(CreationTime, 'MMMM' ) MMMM
+FROM Sales.Orders
+
+--SQL TASK: Show CreationTime using the following format: Day Wed Jan Q1 2025 12:34:56 PM
+SELECT
+CreationTime,
+'Day' + FORMAT(CreationTime, 'ddd MMM') + 'Q1' 
++ DATENAME(QUARTER, CreationTime) + ' ' 
++ FORMAT(CreationTime, 'yyyy hh:mm:ss tt') 
+AS user_format
+FROM Sales.Orders
+
+-- USE CASE OF FORMATIING: DATA AGGREGATIONS
+SELECT
+FORMAT(OrderDate, 'MMM yy') OrderDate,
+COUNT(*)
+FROM sales.Orders
+GROUP BY FORMAT(OrderDate, 'MMM yy')
+
+-- USE CASE OF FORMATIING: DATA STANDARISATION
+
+
+
+
