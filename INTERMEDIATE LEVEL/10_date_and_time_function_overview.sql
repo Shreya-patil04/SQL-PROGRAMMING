@@ -119,6 +119,5 @@ WHERE MONTH(OrderDate) = 2
 
 
 
-
-
 -- FORMAT AND CASTING FUNCTIONS: -
+-- 1. FORMAT()
