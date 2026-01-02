@@ -152,8 +152,75 @@ COUNT(*)
 FROM sales.Orders
 GROUP BY FORMAT(OrderDate, 'MMM yy')
 
--- USE CASE OF FORMATIING: DATA STANDARISATION
+-- 2. CONVERT()
+SELECT
+CONVERT(INT , '123') AS [String to Int CONVERT] , 
+CONVERT(DATE, '2025-08-17') AS [String to Date CONVERT] ,
+CreationTime , 
+CONVERT(DATE, CreationTime) AS [Datetime to Date CONVERT],
+CONVERT(VARCHAR, CreationTime, 32) AS [USA std. Style:32],
+CONVERT(VARCHAR, CreationTime, 34) AS [EURO std. Style:34]
+FROM Sales.Orders
 
+-- 3. CAST()
+SELECT
+CAST('123' AS INT) AS [String to Int],
+CAST(123 AS VARCHAR) AS [Int to String],
+CAST('2025-08-23' AS DATE) AS [String to Date],
+CAST('2025-08-23' AS DATETIME) AS [String to DateTime],
+CreationTime,
+CAST(CreationTime AS DATE) AS [DateTime to Date]
+FROM Sales.Orders
+
+
+
+-- CALCULATION FUNCTIONS: -
+-- 1. DATEADD()
+SELECT
+OrderID,
+OrderDate,
+DATEADD(month, 3, OrderDate) AS Three_months_later,
+DATEADD(year, 2, OrderDate) AS Two_years_later,
+DATEADD(day, -10, OrderDate) AS Ten_days_before
+FROM Sales.Orders
+
+-- 2. DATEDIFF()
+-- SQL TASK: Calculate the age of employees
+SELECT 
+EmployeeID,
+BirthDate,
+DATEDIFF(year, BirthDate, GETDATE()) Age
+FROM Sales.Employees
+
+-- SQL TASK: Find the shipping duration in days for each month
+SELECT
+MONTH(OrderDate) as OrderDate,
+AVG(DATEDIFF(day, OrderDate, ShipDate)) day_to_ship
+FROM Sales.Orders
+GROUP BY MONTH(OrderDate) 
+
+-- TIME TASK ANALYSIS
+-- SQL TASK: Find the number of days between each order and previous order
+SELECT
+OrderId,
+OrderDate CurrentOrderDate,
+-- LAG() - window function
+LAG(OrderDate) OVER (ORDER BY OrderDate) PreviousOrderDate,
+DATEDIFF(day, LAG(OrderDate) OVER (ORDER BY OrderDate), OrderDate ) Number_of_days
+FROM Sales.Orders
+
+
+-- VALIDATION FUNCTIONS: -
+-- ISDATE()
+SELECT 
+ISDATE('123') Datecheck1,
+ISDATE('2025-08-20') Datecheck2,
+ISDATE('20-08-2025') Datecheck3,
+ISDATE('2025') Datecheck4,
+ISDATE('08') Datecheck5
+
+SELECT '2025-0S-20' AS OrderDate UNION
+SELECT 
 
 
 
