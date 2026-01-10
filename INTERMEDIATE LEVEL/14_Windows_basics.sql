@@ -102,6 +102,22 @@ Sales,
 RANK()  OVER (ORDER BY Sales ASC ) RankSales
 FROM Sales.Orders
 
+-- WINDOW FRAMES: 
+
+--example: -
+SELECT
+    OrderID,
+    OrderDate,
+    ProductID,
+    OrderStatus,
+    Sales,
+    SUM(Sales) OVER (
+        PARTITION BY OrderStatus 
+        ORDER BY OrderDate 
+        -- frame defined below
+        ROWS BETWEEN CURRENT ROW AND 2 FOLLOWING
+) AS Total_Sales
+FROM Sales.Orders;
 
 SELECT
     OrderID,
@@ -112,13 +128,40 @@ SELECT
     SUM(Sales) OVER (
         PARTITION BY OrderStatus 
         ORDER BY OrderDate 
-        ROWS BETWEEN CURRENT ROW AND 2 FOLLOWING
+        -- frame defined below
+        ROWS BETWEEN 2 PRECEDING AND CURRENT ROW 
     ) AS Total_Sales
 FROM Sales.Orders;
 
-/* TASK 8: 
-   Calculate Total Sales by Order Status for current and previous two orders 
-*/
+-- DEFAULT FRAME: -
+SELECT
+    OrderID,
+    OrderDate,
+    ProductID,
+    OrderStatus,
+    Sales,
+    SUM(Sales) OVER (
+        PARTITION BY OrderStatus 
+        ORDER BY OrderDate 
+        -- default frame below ->
+        -- ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW 
+
+    ) AS Total_Sales
+FROM Sales.Orders;
+
+
+-- SQL TASK: Find the total sakes for each order status, only for two products 101 and 102 
+SELECT
+    OrderID,
+    OrderDate,
+    ProductID,
+    OrderStatus,
+    Sales,
+    SUM(Sales) OVER (PARTITION BY OrderStatus) AS Total_Sales
+FROM Sales.Orders
+WHERE ProductID IN (101,102)
+
+-- Calculate Total Sales by Order Status for current and previous two orders 
 SELECT
     OrderID,
     OrderDate,
