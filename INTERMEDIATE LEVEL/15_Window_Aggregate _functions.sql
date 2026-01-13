@@ -1,5 +1,22 @@
-/* TASK 1:
-   Find the Total Number of Orders and the Total Number of Orders for Each Customer
+use SalesDB
+
+-- 1. COUNT()
+--SQL TASK:Find the Total Number of Orders
+SELECT
+COUNT(*) TotalOrders
+FROM Sales.Orders
+
+-- SQL TASK: Find the Total Number of Orders additionally provide details such as OrderID, order date
+SELECT
+    OrderID,
+    OrderDate,
+    CustomerID,
+    COUNT(*) OVER() AS TotalOrders
+FROM Sales.Orders
+
+/* SQL TASK: Find the Total Number of Orders 
+find total number of orders for each customer
+additionally provide details such as OrderID, order date
 */
 SELECT
     OrderID,
@@ -9,7 +26,9 @@ SELECT
     COUNT(*) OVER(PARTITION BY CustomerID) AS OrdersByCustomers
 FROM Sales.Orders
 
-/* TASK 2:
+-- SQL TASK: Find the total number of customers additionally provide all customers details
+
+/* SQL TASK: 
    - Find the Total Number of Customers
    - Find the Total Number of Scores for Customers
    - Find the Total Number of Countries
