@@ -27,6 +27,21 @@ SELECT
 FROM Sales.Orders
 
 -- SQL TASK: Find the total number of customers additionally provide all customers details
+SELECT
+*,
+COUNT(*) OVER () TotalCustomers
+FROM Sales.Customers
+
+/* SQL TASK: 
+   - Find the Total Number of Customers
+   - Find the Total Number of Scores for Customers
+   - Additionally provide all customers details
+*/
+SELECT
+*,
+COUNT(*) OVER () TotalCustomers,
+COUNT(Score) OVER() AS TotalScores
+FROM Sales.Customers
 
 /* SQL TASK: 
    - Find the Total Number of Customers
