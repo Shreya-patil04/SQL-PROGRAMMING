@@ -56,9 +56,13 @@ SELECT
     COUNT(Country) OVER() AS TotalCountries
 FROM Sales.Customers
 
-/* TASK 3:
-   Check whether the table 'OrdersArchive' contains any duplicate rows
-*/
+-- SQL TASK: Check whether the table 'Orders' contains any duplicate rows
+SELECT
+OrderID,
+COUNT(*) OVER (PARTITION BY OrderID) CheckPK
+    FROM Sales.Orders
+
+-- SQL TASK: Check whether the table 'OrdersArchive' contains any duplicate rows
 SELECT 
     * 
 FROM (
